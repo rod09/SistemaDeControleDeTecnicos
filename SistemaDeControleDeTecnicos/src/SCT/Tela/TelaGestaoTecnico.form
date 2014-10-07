@@ -141,8 +141,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFNome">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFNomeKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFEmail">
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFEmailKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -155,6 +161,9 @@
               <Format format="##/##/####" subtype="-1" type="5"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTFDataContratacaoKeyReleased"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTFCodigo">
           <Events>

@@ -142,7 +142,8 @@ public class TelaGestaoMaquina extends TelaPadrao {
 
     @Override
     protected IKey montaDado() {
-        Maquina maquina = new Maquina(jTFCodigo.getText(), jTFDescricao.getText());
+        Maquina maquina = 
+                new Maquina(jTFCodigo.getText().trim(), jTFDescricao.getText());
         return maquina;
     }
 

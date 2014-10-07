@@ -208,16 +208,16 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
     protected IKey montaDado() {
         FerramentaChamado ferramentaChamado =
                 new FerramentaChamado(
-                        jTFCodigo.getText(),
-                        jTFChamado.getText(),
-                        jTFFerramenta.getText()
+                        jTFCodigo.getText().trim(),
+                        jTFChamado.getText().trim(),
+                        jTFFerramenta.getText().trim()
                 );
         return ferramentaChamado;
     }
 
     @Override
     protected boolean validarCampos() {
-        if (jTFCodigo.getText().isEmpty()) {
+        if (jTFCodigo.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(
                     this,
                     "É obrigatório o preenchimento do campo 'Código'",
@@ -225,7 +225,7 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
                     JOptionPane.WARNING_MESSAGE);
             return false;
         }
-        if (jTFChamado.getText().isEmpty()) {
+        if (jTFChamado.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(
                     this,
                     "É obrigatório o preenchimento do campo 'Chamado'",
@@ -234,7 +234,7 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
             return false;
         }
         
-        if (jTFFerramenta.getText().isEmpty()) {
+        if (jTFFerramenta.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(
                     this,
                     "É obrigatório o preenchimento do campo 'Ferramenta'",

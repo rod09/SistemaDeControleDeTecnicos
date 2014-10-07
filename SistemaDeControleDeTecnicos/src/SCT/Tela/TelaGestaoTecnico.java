@@ -8,6 +8,7 @@ package SCT.Tela;
 import SCT.DAO.TecnicoDAO;
 import SCT.Classe.IKey;
 import SCT.Classe.Tecnico;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -71,6 +72,18 @@ public class TelaGestaoTecnico extends TelaPadrao {
 
         jLabel4.setText("Email:");
 
+        jTFNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFNomeKeyReleased(evt);
+            }
+        });
+
+        jTFEmail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFEmailKeyReleased(evt);
+            }
+        });
+
         jLabel6.setText("Telefone");
 
         try {
@@ -78,6 +91,11 @@ public class TelaGestaoTecnico extends TelaPadrao {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jTFDataContratacao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTFDataContratacaoKeyReleased(evt);
+            }
+        });
 
         jTFCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -184,7 +202,7 @@ public class TelaGestaoTecnico extends TelaPadrao {
     private void jTFCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoKeyReleased
         try {
             // TODO add your handling code here:
-            Tecnico tecnico = (Tecnico) dadosDAO.consulta(jTFCodigo.getText());
+            Tecnico tecnico = (Tecnico) dadosDAO.consulta(jTFCodigo.getText().trim());
             jLTecnico.setText(
                     tecnico != null 
                             ? "Código já cadastrado" 
@@ -192,7 +210,31 @@ public class TelaGestaoTecnico extends TelaPadrao {
         } catch (SQLException ex) {
             Logger.getLogger(TelaGestaoTecnico.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jTFNome.requestFocusInWindow();
+        }
     }//GEN-LAST:event_jTFCodigoKeyReleased
+
+    private void jTFDataContratacaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDataContratacaoKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jTFEmail.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_jTFDataContratacaoKeyReleased
+
+    private void jTFEmailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFEmailKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jTFTelefone.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_jTFEmailKeyReleased
+
+    private void jTFNomeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFNomeKeyReleased
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            jTFDataContratacao.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_jTFNomeKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBDataAtual;
@@ -222,7 +264,7 @@ public class TelaGestaoTecnico extends TelaPadrao {
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 
         Tecnico tecnico = new Tecnico();
-        tecnico.setCodigo(jTFCodigo.getText());
+        tecnico.setCodigo(jTFCodigo.getText().trim());
         tecnico.setNome(jTFNome.getText());
         tecnico.setEmail(jTFEmail.getText());
         tecnico.setTelefone(jTFTelefone.getText());
@@ -232,26 +274,26 @@ public class TelaGestaoTecnico extends TelaPadrao {
 
     @Override
     protected boolean validarCampos() {
-        if (jTFCodigo.getText().isEmpty()) {
+        if (jTFCodigo.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "É obrigatório o preenchimento do campo 'Codigo'",
                     "Aviso",
                     0);
             return false;
         }
-        if (jTFNome.getText().isEmpty()) {
+        if (jTFNome.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "É obrigatório o preenchimento do campo 'Nome'",
                     "Aviso", 0);
             return false;
         }
 
-        if (jTFDataContratacao.getText().isEmpty()) {
+        if (jTFDataContratacao.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "É obrigatório o preenchimento do campo 'Data de contratação'", "Aviso", 0);
             return false;
         }
 
-        if (jTFEmail.getText().isEmpty()) {
+        if (jTFEmail.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(
                     this,
                     "É obrigatório o preenchimento do campo 'Email'",
@@ -260,7 +302,7 @@ public class TelaGestaoTecnico extends TelaPadrao {
             return false;
         }
 
-        if (jTFTelefone.getText().isEmpty()) {
+        if (jTFTelefone.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "É obrigatório o preenchimento do campo 'Telefone'", "Aviso", 0);
             return false;
         }
