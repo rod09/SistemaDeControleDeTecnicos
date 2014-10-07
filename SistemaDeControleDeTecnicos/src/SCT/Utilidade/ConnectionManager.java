@@ -26,7 +26,7 @@ public class ConnectionManager {
                             + "/" + mydatabase;
         try {
             conexao = DriverManager.getConnection(url, username, password);
-            System.out.println("Conexao realizada com sucesso!!!!");
+            //System.out.println("Conexao realizada com sucesso!!!!");
         }catch (SQLException e) {
             throw new SQLException("Nao foi possivel conectar ao banco de dados" + e.getMessage());
         }
