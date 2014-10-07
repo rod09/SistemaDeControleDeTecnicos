@@ -65,7 +65,7 @@ public class ConnectionManager {
             try {
                 conexao.close();
                 conexao = null;
-                System.out.println("Conexao finalizada com sucesso!!!!");
+                //System.out.println("Conexao finalizada com sucesso!!!!");
             } catch (Exception e) {
             }
         }
