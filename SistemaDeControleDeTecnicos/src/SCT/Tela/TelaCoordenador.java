@@ -1,7 +1,12 @@
 package SCT.Tela;
 
+import SCT.DAO.ChamadosRecentesDAO;
+import SCT.DAO.PadraoDAO;
 import SCT.Utilidade.ConnectionManager;
 import java.awt.Dimension;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,8 +35,11 @@ public class TelaCoordenador extends javax.swing.JFrame {
         jMICadastraTecnico = new javax.swing.JMenuItem();
         jMICadastraMaquina = new javax.swing.JMenuItem();
         jMICadastraFerramenta = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         jMICadastrarChamado = new javax.swing.JMenuItem();
         jMICadastrarFerramentaChamado = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMIConsultaChamadosRecentesDeCadaTecnico = new javax.swing.JMenuItem();
         jMAjuda = new javax.swing.JMenu();
         jMISobre = new javax.swing.JMenuItem();
 
@@ -70,13 +78,17 @@ public class TelaCoordenador extends javax.swing.JFrame {
         });
         jMCadastro.add(jMICadastraFerramenta);
 
+        jMBPrincipal.add(jMCadastro);
+
+        jMenu1.setText("Lançamento");
+
         jMICadastrarChamado.setText("Chamado");
         jMICadastrarChamado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMICadastrarChamadoActionPerformed(evt);
             }
         });
-        jMCadastro.add(jMICadastrarChamado);
+        jMenu1.add(jMICadastrarChamado);
 
         jMICadastrarFerramentaChamado.setText("Ferramenta e chamado");
         jMICadastrarFerramentaChamado.addActionListener(new java.awt.event.ActionListener() {
@@ -84,9 +96,21 @@ public class TelaCoordenador extends javax.swing.JFrame {
                 jMICadastrarFerramentaChamadoActionPerformed(evt);
             }
         });
-        jMCadastro.add(jMICadastrarFerramentaChamado);
+        jMenu1.add(jMICadastrarFerramentaChamado);
 
-        jMBPrincipal.add(jMCadastro);
+        jMBPrincipal.add(jMenu1);
+
+        jMenu2.setText("Consulta");
+
+        jMIConsultaChamadosRecentesDeCadaTecnico.setText("Chamados recentes de cada técnico");
+        jMIConsultaChamadosRecentesDeCadaTecnico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIConsultaChamadosRecentesDeCadaTecnicoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMIConsultaChamadosRecentesDeCadaTecnico);
+
+        jMBPrincipal.add(jMenu2);
 
         jMAjuda.setText("Ajuda");
 
@@ -140,6 +164,27 @@ public class TelaCoordenador extends javax.swing.JFrame {
         new TelaGestaoFerramentaChamado(this, true).setVisible(true);
     }//GEN-LAST:event_jMICadastrarFerramentaChamadoActionPerformed
 
+    private void jMIConsultaChamadosRecentesDeCadaTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIConsultaChamadosRecentesDeCadaTecnicoActionPerformed
+        try {
+            // TODO add your handling code here:
+            PadraoDAO dadosDAO = new ChamadosRecentesDAO();
+            TelaPesquisa listagem = new TelaPesquisa(
+                this,
+                true,
+                "Chamados Mais Recentes",
+                dadosDAO,
+                "chamados_recentes");
+        listagem.setLocationRelativeTo(this);
+        listagem.setSize(new Dimension(1000,500));
+        listagem.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaCoordenador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }//GEN-LAST:event_jMIConsultaChamadosRecentesDeCadaTecnicoActionPerformed
+
     private void finaliza() {
         ConnectionManager.desconecta();
         System.exit(0);
@@ -153,6 +198,9 @@ public class TelaCoordenador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMICadastraTecnico;
     private javax.swing.JMenuItem jMICadastrarChamado;
     private javax.swing.JMenuItem jMICadastrarFerramentaChamado;
+    private javax.swing.JMenuItem jMIConsultaChamadosRecentesDeCadaTecnico;
     private javax.swing.JMenuItem jMISobre;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     // End of variables declaration//GEN-END:variables
 }
