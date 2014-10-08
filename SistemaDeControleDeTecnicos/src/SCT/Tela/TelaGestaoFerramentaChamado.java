@@ -163,7 +163,7 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
         // TODO add your handling code here:
         try {
             ChamadoDAO chamadoDAO = new ChamadoDAO();
-            Chamado chamado = (Chamado) chamadoDAO.consulta(jTFChamado.getText());
+            Chamado chamado = (Chamado) chamadoDAO.consulta(jTFChamado.getText().trim());
             String texto =
             (chamado != null)? chamado.getTitulo() : "Chamado não encontrado";
             jLChamado.setText(texto);
@@ -176,7 +176,7 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
         // TODO add your handling code here:
         try {
             FerramentaDAO ferramentaDAO = new FerramentaDAO();
-            Ferramenta ferramenta = (Ferramenta) ferramentaDAO.consulta(jTFFerramenta.getText());
+            Ferramenta ferramenta = (Ferramenta) ferramentaDAO.consulta(jTFFerramenta.getText().trim());
             String texto =
             (ferramenta != null)? ferramenta.getDescricao() : "Ferramenta não encontrada";
             jLFerramenta.setText(texto);
@@ -189,7 +189,7 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
         try {
             // TODO add your handling code here:
             FerramentaChamado ferramentaChamado
-                    = (FerramentaChamado) dadosDAO.consulta(jTFCodigo.getText());
+                    = (FerramentaChamado) dadosDAO.consulta(jTFCodigo.getText().trim());
             jLFerramentaChamado.setText(
                     ferramentaChamado != null ? "Código já cadastrado" : "Código não cadastrado"
             );

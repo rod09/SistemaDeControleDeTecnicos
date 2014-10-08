@@ -125,7 +125,7 @@ public class TelaGestaoMaquina extends TelaPadrao {
     private void jTFCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoKeyReleased
         try {
             // TODO add your handling code here:
-            Maquina maquina = (Maquina) dadosDAO.consulta(jTFCodigo.getText());
+            Maquina maquina = (Maquina) dadosDAO.consulta(jTFCodigo.getText().trim());
             jLMaquina.setText(
             maquina != null ? "Código já existe" : "Código não existe"
             );
@@ -149,7 +149,7 @@ public class TelaGestaoMaquina extends TelaPadrao {
 
     @Override
     protected boolean validarCampos() {
-        if (jTFCodigo.getText().isEmpty()) {
+        if (jTFCodigo.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(
                     this,
                     "É obrigatório o preenchimento do campo 'Código'",
@@ -157,7 +157,7 @@ public class TelaGestaoMaquina extends TelaPadrao {
                     JOptionPane.WARNING_MESSAGE);
             return false;
         }
-        if (jTFDescricao.getText().isEmpty()) {
+        if (jTFDescricao.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(
                     this,
                     "É obrigatório o preenchimento do campo 'Descricao'",

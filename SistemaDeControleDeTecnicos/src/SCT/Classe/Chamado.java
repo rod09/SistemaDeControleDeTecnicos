@@ -3,6 +3,7 @@ package SCT.Classe;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  *
@@ -14,28 +15,18 @@ public class Chamado implements IKey{
     private String codigoMaquina;
     private String titulo;
     private String descricao;
-    private Date data;
-    private Time inicio;
+    private Timestamp data;
 
     public Chamado() {
     }
 
-    public Chamado(
-            String codigo,
-            String codigoTecnico,
-            String codigoMaquina,
-            String codigoFerramenta,
-            String titulo,
-            String descricao,
-            Date data,
-            Time inicio) {
+    public Chamado(String codigo, String codigoTecnico, String codigoMaquina, String titulo, String descricao, Timestamp data) {
         this.codigo = codigo;
         this.codigoTecnico = codigoTecnico;
         this.codigoMaquina = codigoMaquina;
         this.titulo = titulo;
         this.descricao = descricao;
         this.data = data;
-        this.inicio = inicio;
     }
 
     public String getCodigo() {
@@ -78,24 +69,14 @@ public class Chamado implements IKey{
         this.descricao = descricao;
     }
 
-    public Date getData() {
+    public Timestamp getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(Timestamp data) {
         this.data = data;
     }
 
-    public Time getInicio() {
-        return inicio;
-    }
-
-    public void setInicio(Time inicio) {
-        this.inicio = inicio;
-    }
-    
-    
-    
     @Override
     public String getIndex() {
         return codigo;
