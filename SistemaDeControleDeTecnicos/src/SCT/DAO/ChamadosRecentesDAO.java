@@ -32,6 +32,7 @@ public class ChamadosRecentesDAO extends PadraoDAO{
         //itera no ResultSet
         while (rs.next()) {
             ChamadosRecentes chamado = new ChamadosRecentes();
+            chamado.setChamadoCodigo(rs.getString("chamado_codigo"));
             chamado.setTecnico(rs.getString("tecnico"));
             chamado.setMaquina(rs.getString("maquina"));
             chamado.setData(rs.getTimestamp("data"));
@@ -59,6 +60,7 @@ public class ChamadosRecentesDAO extends PadraoDAO{
         //itera no ResultSet
         while (rs.next()) {
             ChamadosRecentes chamado = new ChamadosRecentes();
+            chamado.setChamadoCodigo(rs.getString("chamado_codigo"));
             chamado.setTecnico(rs.getString("tecnico"));
             chamado.setMaquina(rs.getString("maquina"));
             chamado.setData(rs.getTimestamp("data"));
@@ -95,6 +97,7 @@ public class ChamadosRecentesDAO extends PadraoDAO{
         while (rs.next()) {
             String tupla[] = 
                 { 
+                    rs.getString("chamado_codigo"),
                     rs.getString("tecnico"),
                     rs.getString("maquina"),
                     formataData.format(rs.getTimestamp("data"))

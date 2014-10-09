@@ -12,12 +12,23 @@ import java.sql.Timestamp;
  * @author Ródney
  */
 public class ChamadosRecentes {
+    private String chamadoCodigo;
     private String tecnico;
     private String maquina;
     private Timestamp data;
 
     public ChamadosRecentes() {
     }
+
+    public String getChamadoCodigo() {
+        return chamadoCodigo;
+    }
+
+    public void setChamadoCodigo(String chamadoCodigo) {
+        this.chamadoCodigo = chamadoCodigo;
+    }
+    
+    
 
     public String getTecnico() {
         return tecnico;
