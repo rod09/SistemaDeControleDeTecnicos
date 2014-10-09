@@ -11,7 +11,7 @@ import java.sql.Timestamp;
  *
  * @author Ródney
  */
-public class ChamadosRecentes {
+public class ChamadosRecentes implements IKey{
     private String chamadoCodigo;
     private String tecnico;
     private String maquina;
@@ -52,6 +52,11 @@ public class ChamadosRecentes {
 
     public void setData(Timestamp data) {
         this.data = data;
+    }
+
+    @Override
+    public String getIndex() {
+        return chamadoCodigo;
     }
     
     

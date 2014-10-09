@@ -15,7 +15,7 @@ public class FormataColuna  extends DefaultTableColumnModel{
     
     public FormataColuna(FontMetrics fm,ArrayList<EstruturaTabela> estruturaTabela) {
                
-        int letra  = fm.stringWidth("M");
+        //int letra  = fm.stringWidth("M");
         int tamanhoColuna=0;
 
         Iterator iterator = estruturaTabela.iterator();
@@ -28,7 +28,7 @@ public class FormataColuna  extends DefaultTableColumnModel{
             else{
                 tamanhoColuna=estrutura.getTamanho();
             }
-            addColumn (criaColuna(i,tamanhoColuna*letra, fm, true, estrutura.getCampo().toUpperCase()));
+            addColumn (criaColuna(i,tamanhoColuna, fm, true, estrutura.getCampo().toUpperCase()));
             i++;
         }
     }

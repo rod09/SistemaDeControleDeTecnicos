@@ -5,11 +5,13 @@
 package SCT.DAO;
 
 import SCT.Classe.ChamadosRecentes;
+import SCT.Classe.Ferramenta;
 import SCT.Classe.IKey;
 import SCT.Utilidade.EstruturaPesquisa;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -119,14 +121,29 @@ public class ChamadosRecentesDAO extends PadraoDAO{
     public void remove(IKey dado) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public ArrayList consulta1(String chave) throws SQLException {
+        ArrayList<String> ferramentas = new ArrayList();
+        String sql = "SELECT ferramenta.descricao AS ferramenta "
+                + "FROM ferramenta,ferramenta_chamado WHERE"
+        +" ferramenta.codigo=ferramenta_chamado.ferramenta_codigo AND "
+                + "ferramenta_chamado.chamado_codigo='"+chave+"'";
 
-    @Override
-    public IKey consulta(String chave) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while (rs.next()) {
+            ferramentas.add(rs.getString("ferramenta"));
+        }
+        return ferramentas;
     }
 
     @Override
     public void add(IKey dado) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public IKey consulta(String chave) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

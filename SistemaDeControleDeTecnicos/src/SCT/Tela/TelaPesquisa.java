@@ -1,6 +1,7 @@
 package SCT.Tela;
 
 
+import SCT.DAO.ChamadosRecentesDAO;
 import SCT.DAO.PadraoDAO;
 import SCT.Utilidade.EstruturaPesquisa;
 import SCT.Utilidade.EstruturaTabela;
@@ -9,6 +10,8 @@ import SCT.Utilidade.TabelaPesquisa;
 import java.awt.FontMetrics;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
 
@@ -330,16 +333,31 @@ public class TelaPesquisa extends javax.swing.JDialog {
     }
 
     private void jTResultPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTResultPesquisaMouseClicked
-        if (campoRetorno != null) {
+        /*if (campoRetorno != null) {
             int posColuna = tabelaPesquisa.getColumnPos(campoRetorno);
             retornoPesquisa = null;
             if (evt.getClickCount() == 2) {
                 if (posColuna != -1) {
                     retornoPesquisa = (String) tabelaPesquisa.getValueAt(jTResultPesquisa.getSelectedRow(), posColuna);
                 }
-                this.dispose();
+                //this.dispose();
+            }
+        }*/
+        int posColuna = tabelaPesquisa.getColumnPos("CHAMADO_CODIGO");
+        if(posColuna != -1){
+           
+            try {
+                String codigoChamado = 
+                (String)tabelaPesquisa.getValueAt(jTResultPesquisa.getSelectedRow(), posColuna);
+                ChamadosRecentesDAO c = new ChamadosRecentesDAO();
+                ArrayList<String> ferramentas = c.consulta1(codigoChamado);
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaPesquisa.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        
+        
     }//GEN-LAST:event_jTResultPesquisaMouseClicked
 
     public String getRetornoPesquisa() {
@@ -368,7 +386,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
 
             tabelaPesquisa = new TabelaPesquisa(estruturaTabela, dao.todosToString(defineCamposPesquisa()));
             jTResultPesquisa.setModel(tabelaPesquisa);
-            // jTResultPesquisa.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+            //jTResultPesquisa.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
             jScroll.setHorizontalScrollBar(new JScrollBar(0));
             jTResultPesquisa.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
 

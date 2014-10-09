@@ -43,7 +43,8 @@ public class TabelaPesquisa extends AbstractTableModel {
     public String getColumnName(int pos) {
         return colunas[pos];
     }
-
+    
+    
     public int getColumnPos(String name) {
         for (int i = 0; i < colunas.length; i++) {
             if (name.equalsIgnoreCase(colunas[i])) {
