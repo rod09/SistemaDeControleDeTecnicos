@@ -19,7 +19,7 @@ import javax.swing.JScrollBar;
  *
  * @author Ródney AGRO
  */
-public class TelaPesquisa extends javax.swing.JDialog {
+public class TelaPesquisaChamadosRecentes extends javax.swing.JDialog {
 
     private TabelaPesquisa tabelaPesquisa;
     private ArrayList<EstruturaTabela> estruturaTabela;
@@ -30,7 +30,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
     private String campoRetorno;
     private String filtro;
 
-    public TelaPesquisa(
+    public TelaPesquisaChamadosRecentes(
             java.awt.Frame parent,
             boolean modal,
             String titulo,
@@ -48,7 +48,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
         exibePesquisa();
     }
 
-    public TelaPesquisa(java.awt.Frame parent, boolean modal, String titulo, PadraoDAO dao, String tabela, ArrayList<EstruturaTabela> estruturaTabela,
+    public TelaPesquisaChamadosRecentes(java.awt.Frame parent, boolean modal, String titulo, PadraoDAO dao, String tabela, ArrayList<EstruturaTabela> estruturaTabela,
             String camposPesquisa[], String campoRetorno) {
 
         super(parent, modal);
@@ -64,7 +64,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
 
         exibePesquisa();
     }
-    public TelaPesquisa(java.awt.Frame parent, boolean modal, String titulo, PadraoDAO dao, String tabela,
+    public TelaPesquisaChamadosRecentes(java.awt.Frame parent, boolean modal, String titulo, PadraoDAO dao, String tabela,
                         String campoRetorno) {
         super(parent, modal);
         initComponents();
@@ -104,6 +104,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jScroll = new javax.swing.JScrollPane();
         jTResultPesquisa = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -264,6 +265,8 @@ public class TelaPesquisa extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel1.setText("Clique sobre a célula para ver as ferramentas com o técnico");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -272,7 +275,10 @@ public class TelaPesquisa extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPBarraFeramenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPBarraFeramenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -280,7 +286,9 @@ public class TelaPesquisa extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jPBarraFeramenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -333,16 +341,25 @@ public class TelaPesquisa extends javax.swing.JDialog {
     }
 
     private void jTResultPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTResultPesquisaMouseClicked
-        /*if (campoRetorno != null) {
-            int posColuna = tabelaPesquisa.getColumnPos(campoRetorno);
-            retornoPesquisa = null;
-            if (evt.getClickCount() == 2) {
-                if (posColuna != -1) {
-                    retornoPesquisa = (String) tabelaPesquisa.getValueAt(jTResultPesquisa.getSelectedRow(), posColuna);
-                }
-                //this.dispose();
+
+        int posColuna = tabelaPesquisa.getColumnPos("CHAMADO_CODIGO");
+        if(posColuna != -1){
+           
+            try {
+                String codigoChamado = 
+                (String)tabelaPesquisa.getValueAt(jTResultPesquisa.getSelectedRow(), posColuna);
+                ChamadosRecentesDAO c = new ChamadosRecentesDAO();
+                ArrayList<String> ferramentas = c.consulta1(codigoChamado);
+                TelaFerramentas t = new TelaFerramentas(null, true, ferramentas);
+                t.setLocationRelativeTo(this);
+                t.setResizable(false);
+                t.setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(TelaPesquisaChamadosRecentes.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }*/
+        }
+        
+        
     }//GEN-LAST:event_jTResultPesquisaMouseClicked
 
     public String getRetornoPesquisa() {
@@ -398,6 +415,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCBSelecaoAutoPesq;
     private javax.swing.JLabel jLCarregar;
     private javax.swing.JLabel jLPesquisar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPBarraFeramenta;
     private javax.swing.JPanel jPOrdemPesquisa;
     private javax.swing.JPanel jPanel1;

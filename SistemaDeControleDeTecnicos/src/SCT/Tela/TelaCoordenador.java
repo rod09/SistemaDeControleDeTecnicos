@@ -168,7 +168,7 @@ public class TelaCoordenador extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             PadraoDAO dadosDAO = new ChamadosRecentesDAO();
-            TelaPesquisa listagem = new TelaPesquisa(
+            TelaPesquisaChamadosRecentes listagem = new TelaPesquisaChamadosRecentes(
                 this,
                 true,
                 "Chamados Mais Recentes",

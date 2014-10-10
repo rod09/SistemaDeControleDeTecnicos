@@ -5,7 +5,6 @@
 package SCT.DAO;
 
 import SCT.Classe.ChamadosRecentes;
-import SCT.Classe.Ferramenta;
 import SCT.Classe.IKey;
 import SCT.Utilidade.EstruturaPesquisa;
 import java.sql.PreparedStatement;

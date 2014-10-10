@@ -138,6 +138,8 @@ public class TelaLogin extends javax.swing.JDialog {
                     }else{
                         dispose();
                         // ABRIR TELA TECNICO AQUI
+                        TelaTecnico tt = new TelaTecnico();
+                        tt.setVisible(true);
                     }
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(
