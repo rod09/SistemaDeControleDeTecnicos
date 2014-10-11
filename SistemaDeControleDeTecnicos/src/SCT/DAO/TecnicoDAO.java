@@ -4,7 +4,6 @@
  */
 package SCT.DAO;
 
-import SCT.Classe.Maquina;
 import SCT.Classe.IKey;
 import SCT.Classe.Tecnico;
 import SCT.Utilidade.EstruturaPesquisa;
@@ -55,7 +54,7 @@ public class TecnicoDAO extends PadraoDAO{
         PreparedStatement pst = connection.prepareStatement(sql);
 
         //SETA OS VALORES
-        pst.setString(1, ((Tecnico)dado).getCodigo());
+        pst.setString(1, dado.getIndex());
         pst.setString(2, ((Tecnico)dado).getNome());
         pst.setString(3, ((Tecnico)dado).getEmail());
         pst.setString(4, ((Tecnico)dado).getTelefone());

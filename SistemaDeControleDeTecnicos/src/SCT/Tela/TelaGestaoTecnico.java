@@ -271,11 +271,15 @@ public class TelaGestaoTecnico extends TelaPadrao {
         }
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         
+        String codigoTecnico;
+        if(jTFCodigo.getText().trim().isEmpty()){
         //Gera código aleatório
         UUID codigoTecnicoUUID = UUID.randomUUID();
         //Diminui tamanho do código para 7 caracteres
-        String codigoTecnico = String.valueOf(codigoTecnicoUUID).substring(0, 7);
-
+        codigoTecnico = String.valueOf(codigoTecnicoUUID).substring(0, 7);
+        }else{
+            codigoTecnico = jTFCodigo.getText().trim();
+        }
         Tecnico tecnico = new Tecnico();
         tecnico.setCodigo(codigoTecnico);
         tecnico.setNome(jTFNome.getText());
