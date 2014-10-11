@@ -250,7 +250,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="text" type="java.lang.String" value="C&#xf3;digo adicionado aleatoriamente"/>
+            <Property name="text" type="java.lang.String" value="C&#xf3;digo gerado automaticamente"/>
           </Properties>
         </Component>
       </SubComponents>

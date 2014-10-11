@@ -130,7 +130,7 @@ public class TelaGestaoChamado extends TelaPadrao {
 
         jLChamado.setText(" ");
 
-        jLabel6.setText("Código adicionado aleatoriamente");
+        jLabel6.setText("Código gerado automaticamente");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

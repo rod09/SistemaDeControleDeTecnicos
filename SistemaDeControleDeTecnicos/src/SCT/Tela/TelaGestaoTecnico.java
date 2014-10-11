@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -58,6 +59,7 @@ public class TelaGestaoTecnico extends TelaPadrao {
         jBDataAtual = new javax.swing.JButton();
         jLTecnico = new javax.swing.JLabel();
         jTFTelefone = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestão de Técnicos");
@@ -118,6 +120,8 @@ public class TelaGestaoTecnico extends TelaPadrao {
             ex.printStackTrace();
         }
 
+        jLabel5.setText("Código gerado automaticamente");
+
         javax.swing.GroupLayout jPDadosContatoLayout = new javax.swing.GroupLayout(jPDadosContato);
         jPDadosContato.setLayout(jPDadosContatoLayout);
         jPDadosContatoLayout.setHorizontalGroup(
@@ -142,7 +146,9 @@ public class TelaGestaoTecnico extends TelaPadrao {
                         .addComponent(jTFNome))
                     .addGroup(jPDadosContatoLayout.createSequentialGroup()
                         .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLTecnico))
                     .addComponent(jTFTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -154,7 +160,8 @@ public class TelaGestaoTecnico extends TelaPadrao {
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLTecnico))
+                    .addComponent(jLTecnico)
+                    .addComponent(jLabel5))
                 .addGap(13, 13, 13)
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -243,6 +250,7 @@ public class TelaGestaoTecnico extends TelaPadrao {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPDadosContato;
     private javax.swing.JTextField jTFCodigo;
@@ -262,9 +270,14 @@ public class TelaGestaoTecnico extends TelaPadrao {
             Logger.getLogger(TelaGestaoTecnico.class.getName()).log(Level.SEVERE, null, ex);
         }
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        
+        //Gera código aleatório
+        UUID codigoTecnicoUUID = UUID.randomUUID();
+        //Diminui tamanho do código para 7 caracteres
+        String codigoTecnico = String.valueOf(codigoTecnicoUUID).substring(0, 7);
 
         Tecnico tecnico = new Tecnico();
-        tecnico.setCodigo(jTFCodigo.getText().trim());
+        tecnico.setCodigo(codigoTecnico);
         tecnico.setNome(jTFNome.getText());
         tecnico.setEmail(jTFEmail.getText());
         tecnico.setTelefone(jTFTelefone.getText());
@@ -274,13 +287,6 @@ public class TelaGestaoTecnico extends TelaPadrao {
 
     @Override
     protected boolean validarCampos() {
-        if (jTFCodigo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                    "É obrigatório o preenchimento do campo 'Codigo'",
-                    "Aviso",
-                    0);
-            return false;
-        }
         if (jTFNome.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "É obrigatório o preenchimento do campo 'Nome'",
@@ -348,7 +354,6 @@ public class TelaGestaoTecnico extends TelaPadrao {
     @Override
     protected void setEstadoInsercao() {
             jTFNome.setEditable(true);
-            jTFCodigo.setEditable(true);
             jTFEmail.setEditable(true);
             jTFDataContratacao.setEditable(true);
             jTFTelefone.setEditable(true);
@@ -360,7 +365,6 @@ public class TelaGestaoTecnico extends TelaPadrao {
     @Override
     protected void setEstadoEdicao() {
             jTFNome.setEditable(true);
-            jTFCodigo.setEditable(false);
             jTFEmail.setEditable(true);
             jTFDataContratacao.setEditable(true);
             jTFTelefone.setEditable(true);
