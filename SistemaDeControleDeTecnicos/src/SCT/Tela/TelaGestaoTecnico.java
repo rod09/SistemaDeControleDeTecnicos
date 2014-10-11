@@ -8,6 +8,7 @@ package SCT.Tela;
 import SCT.DAO.TecnicoDAO;
 import SCT.Classe.IKey;
 import SCT.Classe.Tecnico;
+import SCT.Utilidade.Utilidade;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -271,17 +272,9 @@ public class TelaGestaoTecnico extends TelaPadrao {
         }
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         
-        String codigoTecnico;
-        if(jTFCodigo.getText().trim().isEmpty()){
-        //Gera código aleatório
-        UUID codigoTecnicoUUID = UUID.randomUUID();
-        //Diminui tamanho do código para 7 caracteres
-        codigoTecnico = String.valueOf(codigoTecnicoUUID).substring(0, 7);
-        }else{
-            codigoTecnico = jTFCodigo.getText().trim();
-        }
+        
         Tecnico tecnico = new Tecnico();
-        tecnico.setCodigo(codigoTecnico);
+        tecnico.setCodigo(Utilidade.getUUID(jTFCodigo.getText()));
         tecnico.setNome(jTFNome.getText());
         tecnico.setEmail(jTFEmail.getText());
         tecnico.setTelefone(jTFTelefone.getText());
