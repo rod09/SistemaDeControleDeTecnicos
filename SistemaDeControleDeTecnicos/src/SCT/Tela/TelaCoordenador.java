@@ -5,6 +5,7 @@ import SCT.DAO.PadraoDAO;
 import SCT.Utilidade.ConnectionManager;
 import java.awt.Dimension;
 import java.sql.SQLException;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -115,6 +116,11 @@ public class TelaCoordenador extends javax.swing.JFrame {
         jMAjuda.setText("Ajuda");
 
         jMISobre.setText("Sobre");
+        jMISobre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMISobreActionPerformed(evt);
+            }
+        });
         jMAjuda.add(jMISobre);
 
         jMBPrincipal.add(jMAjuda);
@@ -184,6 +190,12 @@ public class TelaCoordenador extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jMIConsultaChamadosRecentesDeCadaTecnicoActionPerformed
+
+    private void jMISobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISobreActionPerformed
+        // TODO add your handling code here:
+        UUID userId = UUID.randomUUID();
+        System.out.println(String.valueOf(userId).substring(0, 7));
+    }//GEN-LAST:event_jMISobreActionPerformed
 
     private void finaliza() {
         ConnectionManager.desconecta();

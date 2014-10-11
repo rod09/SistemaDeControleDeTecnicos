@@ -12,10 +12,10 @@ import SCT.Classe.Tecnico;
 import SCT.DAO.ChamadoDAO;
 import SCT.DAO.MaquinaDAO;
 import SCT.DAO.TecnicoDAO;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -28,6 +28,8 @@ public class TelaGestaoChamado extends TelaPadrao {
 
     /**
      * Creates new form AtividadeView
+     * @param parent
+     * @param modal
      */
     public TelaGestaoChamado(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -69,6 +71,7 @@ public class TelaGestaoChamado extends TelaPadrao {
         jLNomeTecnico = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLChamado = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gestão de Atividade");
@@ -127,6 +130,8 @@ public class TelaGestaoChamado extends TelaPadrao {
 
         jLChamado.setText(" ");
 
+        jLabel6.setText("Código adicionado aleatoriamente");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -158,12 +163,13 @@ public class TelaGestaoChamado extends TelaPadrao {
                             .addComponent(jTFCodigo)
                             .addComponent(jTFMaquinaCodigo, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTFTecnicoCodigo, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLChamado))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLMaquinaDescricao)
                                     .addComponent(jLNomeTecnico))
@@ -181,14 +187,14 @@ public class TelaGestaoChamado extends TelaPadrao {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLChamado))
+                        .addComponent(jLChamado)
+                        .addComponent(jLabel6))
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLNomeTecnico, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jTFTecnicoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jTFTecnicoCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLNomeTecnico))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -279,6 +285,7 @@ public class TelaGestaoChamado extends TelaPadrao {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -293,10 +300,14 @@ public class TelaGestaoChamado extends TelaPadrao {
     protected IKey montaDado() {
         //DateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
         //DateFormat formataHora = new SimpleDateFormat("HH:mm");
+        //Gera código aleatório
+        UUID codigoChamadoUUID = UUID.randomUUID();
+        //Diminui tamanho do código para 7 caracteres
+        String codigoChamado = String.valueOf(codigoChamadoUUID).substring(0, 7);
 
-
+        
         Chamado chamado = new Chamado();
-        chamado.setCodigo(jTFCodigo.getText());
+        chamado.setCodigo(codigoChamado);
         chamado.setCodigoTecnico(jTFTecnicoCodigo.getText());
         chamado.setCodigoMaquina(jTFMaquinaCodigo.getText());
         chamado.setTitulo(jTFTitulo.getText());
@@ -315,13 +326,6 @@ public class TelaGestaoChamado extends TelaPadrao {
     
     @Override
     protected boolean validarCampos() {
-        if (jTFTecnicoCodigo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                    "É obrigatório o preenchimento do campo 'Código do técnico'",
-                    "Aviso",
-                    0);
-            return false;
-        }
 
         if (jFTFData.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this,
@@ -427,7 +431,6 @@ public class TelaGestaoChamado extends TelaPadrao {
     @Override
     protected void setEstadoInsercao() {
         jTFTecnicoCodigo.setEditable(true);
-        jTFCodigo.setEditable(true);
         jTFTitulo.setEditable(true);
         jTFMaquinaCodigo.setEditable(true);
         //jFTFData.setEditable(true);
@@ -442,7 +445,6 @@ public class TelaGestaoChamado extends TelaPadrao {
     @Override
     protected void setEstadoEdicao() {
         jTFTecnicoCodigo.setEditable(false);
-        jTFCodigo.setEditable(false);
         jTFTitulo.setEditable(true);
         jTFMaquinaCodigo.setEditable(false);
         jFTFData.setEditable(true);
