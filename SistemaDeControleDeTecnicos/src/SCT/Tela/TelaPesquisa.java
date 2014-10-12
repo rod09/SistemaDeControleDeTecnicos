@@ -353,6 +353,11 @@ public class TelaPesquisa extends javax.swing.JDialog {
             StringSelection stringSelection = new StringSelection(conteudoClicado);
             Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
             clpbrd.setContents(stringSelection, null);
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Texto copiado! Use CTRL+V para colar.",
+                    conteudoClicado,
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jTResultPesquisaMouseClicked
 

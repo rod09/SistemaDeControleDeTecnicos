@@ -478,7 +478,7 @@ public abstract class TelaPadrao extends javax.swing.JDialog {
             jBExclui.setEnabled(false);
             jBDesfaz.setEnabled(true);
             jBEncerraCadastro.setEnabled(false);
-            jBListar.setEnabled(false);
+            jBListar.setEnabled(true);
         } else {
             if (estado == EDICAO) {
                 setEstadoEdicao();
