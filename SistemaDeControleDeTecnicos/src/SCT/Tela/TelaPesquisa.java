@@ -1,19 +1,19 @@
 package SCT.Tela;
 
-
-import SCT.DAO.ChamadosRecentesDAO;
 import SCT.DAO.PadraoDAO;
 import SCT.Utilidade.EstruturaPesquisa;
 import SCT.Utilidade.EstruturaTabela;
 import SCT.Utilidade.FormataColuna;
 import SCT.Utilidade.TabelaPesquisa;
 import java.awt.FontMetrics;
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollBar;
+import javax.swing.JTable;
 
 /**
  *
@@ -64,8 +64,9 @@ public class TelaPesquisa extends javax.swing.JDialog {
 
         exibePesquisa();
     }
+
     public TelaPesquisa(java.awt.Frame parent, boolean modal, String titulo, PadraoDAO dao, String tabela,
-                        String campoRetorno) {
+            String campoRetorno) {
         super(parent, modal);
         initComponents();
         setTitle(titulo);
@@ -79,6 +80,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
         redimensionaColuna = 0;
         exibePesquisa();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -104,6 +106,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jScroll = new javax.swing.JScrollPane();
         jTResultPesquisa = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -264,6 +267,8 @@ public class TelaPesquisa extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel1.setText("Para copiar o conteúdo da célula para a área de trasnsferência, clique duas vezes sobre a mesma");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -272,7 +277,10 @@ public class TelaPesquisa extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPBarraFeramenta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPBarraFeramenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -281,6 +289,8 @@ public class TelaPesquisa extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addComponent(jPBarraFeramenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -313,13 +323,13 @@ public class TelaPesquisa extends javax.swing.JDialog {
                     + jCBOrdemPesq.getSelectedItem().toString()
                     + " LIKE '%"
                     + jTFPesquisaPesq.getText()
-                    +"%'");
+                    + "%'");
         }
         int qtdeRegCarregar = ((Integer) qtdeACarregarPesq.getValue()).intValue();
         if (qtdeRegCarregar > 0) {
             estruturaPesquisa.setLimite(qtdeRegCarregar);
         }
-         return estruturaPesquisa;
+        return estruturaPesquisa;
     }
 
     private void defineEstruturaTabela() {
@@ -333,16 +343,17 @@ public class TelaPesquisa extends javax.swing.JDialog {
     }
 
     private void jTResultPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTResultPesquisaMouseClicked
-        /*if (campoRetorno != null) {
-            int posColuna = tabelaPesquisa.getColumnPos(campoRetorno);
-            retornoPesquisa = null;
-            if (evt.getClickCount() == 2) {
-                if (posColuna != -1) {
-                    retornoPesquisa = (String) tabelaPesquisa.getValueAt(jTResultPesquisa.getSelectedRow(), posColuna);
-                }
-                //this.dispose();
-            }
-        }*/
+        if (evt.getClickCount() == 2) {
+            final JTable tabela = (JTable) evt.getSource();
+            final int linha = tabela.getSelectedRow();
+            final int coluna = tabela.getSelectedColumn();
+
+            final String conteudoClicado
+                    = (String) tabela.getValueAt(linha, coluna);
+            StringSelection stringSelection = new StringSelection(conteudoClicado);
+            Clipboard clpbrd = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clpbrd.setContents(stringSelection, null);
+        }
     }//GEN-LAST:event_jTResultPesquisaMouseClicked
 
     public String getRetornoPesquisa() {
@@ -375,7 +386,6 @@ public class TelaPesquisa extends javax.swing.JDialog {
             jScroll.setHorizontalScrollBar(new JScrollBar(0));
             jTResultPesquisa.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
 
-
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Modulo Listagem",
                     JOptionPane.ERROR_MESSAGE);
@@ -398,6 +408,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCBSelecaoAutoPesq;
     private javax.swing.JLabel jLCarregar;
     private javax.swing.JLabel jLPesquisar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPBarraFeramenta;
     private javax.swing.JPanel jPOrdemPesquisa;
     private javax.swing.JPanel jPanel1;

@@ -5,8 +5,6 @@ import SCT.DAO.PadraoDAO;
 import SCT.Classe.IKey;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -425,7 +423,11 @@ public abstract class TelaPadrao extends javax.swing.JDialog {
     //========================================
     //Implementar este método na classe filha
     //========================================
-    protected abstract void listar();
+    protected void listar(){
+        TelaPesquisas t = new TelaPesquisas(null, true);
+        t.setLocationRelativeTo(this);
+        t.setVisible(true);
+    }
     //========================================
 
     public void limpaCampos() {

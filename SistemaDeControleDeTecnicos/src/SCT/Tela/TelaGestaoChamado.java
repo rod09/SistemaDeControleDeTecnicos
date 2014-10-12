@@ -396,18 +396,6 @@ public class TelaGestaoChamado extends TelaPadrao {
     }   
 
     @Override
-    protected void listar() {
-        TelaPesquisa listagem = new TelaPesquisa(
-                null,
-                true,
-                "Chamados Armazenados",
-                dadosDAO,
-                "chamado");
-        listagem.setLocationRelativeTo(null);
-        listagem.setVisible(true);
-    }
-
-    @Override
     protected void setEstadoVisualizacao() {
         jTFTecnicoCodigo.setEditable(false);
         jTFTitulo.setEditable(false);

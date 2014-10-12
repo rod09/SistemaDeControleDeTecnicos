@@ -196,17 +196,6 @@ public class TelaGestaoMaquina extends TelaPadrao {
         jTFDescricao.requestFocusInWindow();
     }
 
-    @Override
-    protected void listar() {
-        TelaPesquisa listagem = new TelaPesquisa(
-                null,
-                true,
-                "Máquinas Armazenadas",
-                dadosDAO,
-                "maquina");
-        listagem.setLocationRelativeTo(null);
-        listagem.setVisible(true);
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLMaquina;
     private javax.swing.JLabel jLNome;

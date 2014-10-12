@@ -303,17 +303,6 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
         jTFChamado.requestFocusInWindow();
     }
 
-    @Override
-    protected void listar() {
-        TelaPesquisa listagem = new TelaPesquisa(
-                null,
-                true,
-                "Ferramentas e Chamados Armazenados",
-                dadosDAO,
-                "ferramenta_chamado");
-        listagem.setLocationRelativeTo(null);
-        listagem.setVisible(true);
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLChamado;
     private javax.swing.JLabel jLFerramenta;

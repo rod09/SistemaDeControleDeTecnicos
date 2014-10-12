@@ -325,17 +325,6 @@ public class TelaGestaoTecnico extends TelaPadrao {
         jTFTelefone.setText(((Tecnico)dados.get(corrente)).getTelefone());
     }
 
-    @Override
-    protected void listar() {
-        TelaPesquisa listagem = new TelaPesquisa(
-                null,
-                true,
-                "Técnicos Armazenados",
-                dadosDAO,
-                "tecnico");
-        listagem.setLocationRelativeTo(this);
-        listagem.setVisible(true);
-    }
 
     @Override
     protected void setEstadoVisualizacao() {

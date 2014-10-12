@@ -9,8 +9,6 @@ import SCT.Classe.Ferramenta;
 import SCT.Classe.IKey;
 import SCT.Utilidade.Utilidade;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -169,17 +167,6 @@ public class TelaGestaoFerramenta extends TelaPadrao {
         jTFDescricao.requestFocusInWindow();
     }
 
-    @Override
-    protected void listar() {
-        TelaPesquisa listagem = new TelaPesquisa(
-                null,
-                true,
-                "Ferramentas Armazenadas",
-                dadosDAO,
-                "ferramenta");
-        listagem.setLocationRelativeTo(null);
-        listagem.setVisible(true);
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLNome;
     private javax.swing.JLabel jLTelefone;
