@@ -349,6 +349,7 @@ public class TelaGestaoTecnico extends TelaPadrao {
 
     @Override
     protected void setEstadoInsercao() {
+            jTFNome.requestFocusInWindow();
             jTFNome.setEditable(true);
             jTFEmail.setEditable(true);
             jTFDataContratacao.setEditable(true);
@@ -360,6 +361,7 @@ public class TelaGestaoTecnico extends TelaPadrao {
 
     @Override
     protected void setEstadoEdicao() {
+            jTFNome.requestFocusInWindow();
             jTFNome.setEditable(true);
             jTFEmail.setEditable(true);
             jTFDataContratacao.setEditable(true);

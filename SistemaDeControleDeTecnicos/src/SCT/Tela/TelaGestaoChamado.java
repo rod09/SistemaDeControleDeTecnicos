@@ -425,6 +425,7 @@ public class TelaGestaoChamado extends TelaPadrao {
 
     @Override
     protected void setEstadoInsercao() {
+        jTFTitulo.requestFocusInWindow();
         jTFTecnicoCodigo.setEditable(true);
         jTFTitulo.setEditable(true);
         jTFMaquinaCodigo.setEditable(true);
@@ -444,5 +445,6 @@ public class TelaGestaoChamado extends TelaPadrao {
         jTFMaquinaCodigo.setEditable(false);
         jFTFData.setEditable(true);
         jTADescricao.setEditable(true);
+        jTFTitulo.requestFocusInWindow();
     }
 }

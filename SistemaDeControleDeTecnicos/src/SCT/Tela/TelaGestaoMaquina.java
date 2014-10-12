@@ -187,7 +187,7 @@ public class TelaGestaoMaquina extends TelaPadrao {
         jTFDescricao.setEditable(true);
         jLMaquina.setVisible(true);
         jLMaquina.setText("");
-        jTFCodigo.requestFocusInWindow();
+        jTFDescricao.requestFocusInWindow();
     }
 
     @Override
