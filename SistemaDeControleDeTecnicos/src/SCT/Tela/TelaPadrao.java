@@ -5,6 +5,8 @@ import SCT.DAO.PadraoDAO;
 import SCT.Classe.IKey;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -445,12 +447,13 @@ public abstract class TelaPadrao extends javax.swing.JDialog {
         }
     }
 
-    public void setEstado(int estado) {
-        this.estado = estado;
+    public void setEstado(int estado){
+
+            this.estado = estado;
         if (estado == VISUALIZACAO) {
             setEstadoVisualizacao();
             jBPrimeiro.setEnabled(totCarregado != 0);
-            jBUltimo.setEnabled(totCarregado != 0);
+            jBUltimo.setEnabled(totCarregado != 0 );
             jBProximo.setEnabled(totCarregado != 0);
             jBAnterior.setEnabled(totCarregado != 0);
             jBNovo.setEnabled(true);
