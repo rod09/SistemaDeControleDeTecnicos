@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -100,6 +99,7 @@ public class TelaGestaoTecnico extends TelaPadrao {
             }
         });
 
+        jTFCodigo.setEditable(false);
         jTFCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFCodigoKeyReleased(evt);
@@ -274,7 +274,7 @@ public class TelaGestaoTecnico extends TelaPadrao {
         
         
         Tecnico tecnico = new Tecnico();
-        tecnico.setCodigo(Utilidade.getUUID(jTFCodigo.getText()));
+        tecnico.setCodigo(Utilidade.gerarUUID(jTFCodigo.getText()));
         tecnico.setNome(jTFNome.getText());
         tecnico.setEmail(jTFEmail.getText());
         tecnico.setTelefone(jTFTelefone.getText());
@@ -340,7 +340,6 @@ public class TelaGestaoTecnico extends TelaPadrao {
     @Override
     protected void setEstadoVisualizacao() {
             jTFNome.setEditable(false);
-            jTFCodigo.setEditable(false);
             jTFEmail.setEditable(false);
             jTFDataContratacao.setEditable(false);
             jTFTelefone.setEditable(false);

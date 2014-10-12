@@ -12,10 +12,10 @@ import SCT.Classe.Tecnico;
 import SCT.DAO.ChamadoDAO;
 import SCT.DAO.MaquinaDAO;
 import SCT.DAO.TecnicoDAO;
+import SCT.Utilidade.Utilidade;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -80,6 +80,7 @@ public class TelaGestaoChamado extends TelaPadrao {
 
         jLabel1.setText("Código");
 
+        jTFCodigo.setEditable(false);
         jTFCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFCodigoKeyReleased(evt);
@@ -300,14 +301,9 @@ public class TelaGestaoChamado extends TelaPadrao {
     protected IKey montaDado() {
         //DateFormat formataData = new SimpleDateFormat("dd/MM/yyyy");
         //DateFormat formataHora = new SimpleDateFormat("HH:mm");
-        //Gera código aleatório
-        UUID codigoChamadoUUID = UUID.randomUUID();
-        //Diminui tamanho do código para 7 caracteres
-        String codigoChamado = String.valueOf(codigoChamadoUUID).substring(0, 7);
-
         
         Chamado chamado = new Chamado();
-        chamado.setCodigo(codigoChamado);
+        chamado.setCodigo(Utilidade.gerarUUID(jTFCodigo.getText()));
         chamado.setCodigoTecnico(jTFTecnicoCodigo.getText());
         chamado.setCodigoMaquina(jTFMaquinaCodigo.getText());
         chamado.setTitulo(jTFTitulo.getText());
@@ -420,7 +416,6 @@ public class TelaGestaoChamado extends TelaPadrao {
     @Override
     protected void setEstadoVisualizacao() {
         jTFTecnicoCodigo.setEditable(false);
-        jTFCodigo.setEditable(false);
         jTFTitulo.setEditable(false);
         jTFMaquinaCodigo.setEditable(false);
         jFTFData.setEditable(false);

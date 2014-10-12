@@ -7,6 +7,7 @@ package SCT.Tela;
 import SCT.DAO.MaquinaDAO;
 import SCT.Classe.Maquina;
 import SCT.Classe.IKey;
+import SCT.Utilidade.Utilidade;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,6 +50,7 @@ public class TelaGestaoMaquina extends TelaPadrao {
         jTFDescricao = new javax.swing.JTextField();
         jTFCodigo = new javax.swing.JTextField();
         jLMaquina = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -58,6 +60,7 @@ public class TelaGestaoMaquina extends TelaPadrao {
 
         jLTelefone.setText("Descricao");
 
+        jTFCodigo.setEditable(false);
         jTFCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFCodigoKeyReleased(evt);
@@ -66,6 +69,8 @@ public class TelaGestaoMaquina extends TelaPadrao {
 
         jLMaquina.setText(" ");
 
+        jLabel1.setText("Código gerado automaticamente");
+
         javax.swing.GroupLayout jPDadosContatoLayout = new javax.swing.GroupLayout(jPDadosContato);
         jPDadosContato.setLayout(jPDadosContatoLayout);
         jPDadosContatoLayout.setHorizontalGroup(
@@ -73,9 +78,7 @@ public class TelaGestaoMaquina extends TelaPadrao {
             .addGroup(jPDadosContatoLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDadosContatoLayout.createSequentialGroup()
-                        .addComponent(jLTelefone)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addComponent(jLTelefone, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPDadosContatoLayout.createSequentialGroup()
                         .addComponent(jLNome)
                         .addGap(9, 9, 9)))
@@ -84,7 +87,9 @@ public class TelaGestaoMaquina extends TelaPadrao {
                     .addComponent(jTFDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPDadosContatoLayout.createSequentialGroup()
                         .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLMaquina))))
         );
         jPDadosContatoLayout.setVerticalGroup(
@@ -94,7 +99,8 @@ public class TelaGestaoMaquina extends TelaPadrao {
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNome)
                     .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLMaquina))
+                    .addComponent(jLMaquina)
+                    .addComponent(jLabel1))
                 .addGap(21, 21, 21)
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLTelefone)
@@ -142,21 +148,14 @@ public class TelaGestaoMaquina extends TelaPadrao {
 
     @Override
     protected IKey montaDado() {
-        Maquina maquina = 
-                new Maquina(jTFCodigo.getText().trim(), jTFDescricao.getText());
+        Maquina maquina = new Maquina();
+        maquina.setCodigo(Utilidade.gerarUUID(jTFCodigo.getText()));
+        maquina.setDescricao(jTFDescricao.getText());
         return maquina;
     }
 
     @Override
     protected boolean validarCampos() {
-        if (jTFCodigo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(
-                    this,
-                    "É obrigatório o preenchimento do campo 'Código'",
-                    "Aviso",
-                    JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
         if (jTFDescricao.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(
                     this,
@@ -185,7 +184,6 @@ public class TelaGestaoMaquina extends TelaPadrao {
 
     @Override
     protected void setEstadoInsercao() {
-        jTFCodigo.setEditable(true);
         jTFDescricao.setEditable(true);
         jLMaquina.setVisible(true);
         jLMaquina.setText("");
@@ -194,7 +192,6 @@ public class TelaGestaoMaquina extends TelaPadrao {
 
     @Override
     protected void setEstadoEdicao() {
-        jTFCodigo.setEditable(false);
         jTFDescricao.setEditable(true);
         jTFDescricao.requestFocusInWindow();
     }
@@ -214,6 +211,7 @@ public class TelaGestaoMaquina extends TelaPadrao {
     private javax.swing.JLabel jLMaquina;
     private javax.swing.JLabel jLNome;
     private javax.swing.JLabel jLTelefone;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPDadosContato;
     private javax.swing.JTextField jTFCodigo;
     private javax.swing.JTextField jTFDescricao;

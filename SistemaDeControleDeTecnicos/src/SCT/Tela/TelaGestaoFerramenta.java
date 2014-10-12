@@ -7,6 +7,7 @@ package SCT.Tela;
 import SCT.DAO.FerramentaDAO;
 import SCT.Classe.Ferramenta;
 import SCT.Classe.IKey;
+import SCT.Utilidade.Utilidade;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,6 +50,7 @@ public class TelaGestaoFerramenta extends TelaPadrao {
         jTFDescricao = new javax.swing.JTextField();
         jTFCodigo = new javax.swing.JTextField();
         jLFerramenta = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -66,6 +68,8 @@ public class TelaGestaoFerramenta extends TelaPadrao {
 
         jLFerramenta.setText(" ");
 
+        jLabel1.setText("Código gerado automaticamente");
+
         javax.swing.GroupLayout jPDadosContatoLayout = new javax.swing.GroupLayout(jPDadosContato);
         jPDadosContato.setLayout(jPDadosContatoLayout);
         jPDadosContatoLayout.setHorizontalGroup(
@@ -73,9 +77,7 @@ public class TelaGestaoFerramenta extends TelaPadrao {
             .addGroup(jPDadosContatoLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPDadosContatoLayout.createSequentialGroup()
-                        .addComponent(jLTelefone)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addComponent(jLTelefone, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPDadosContatoLayout.createSequentialGroup()
                         .addComponent(jLNome)
                         .addGap(9, 9, 9)))
@@ -84,7 +86,9 @@ public class TelaGestaoFerramenta extends TelaPadrao {
                     .addComponent(jTFDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPDadosContatoLayout.createSequentialGroup()
                         .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLFerramenta))))
         );
         jPDadosContatoLayout.setVerticalGroup(
@@ -94,7 +98,8 @@ public class TelaGestaoFerramenta extends TelaPadrao {
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNome)
                     .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLFerramenta))
+                    .addComponent(jLFerramenta)
+                    .addComponent(jLabel1))
                 .addGap(21, 21, 21)
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLTelefone)
@@ -142,21 +147,15 @@ public class TelaGestaoFerramenta extends TelaPadrao {
 
     @Override
     protected IKey montaDado() {
-        Ferramenta ferramenta =
-                new Ferramenta(jTFCodigo.getText(), jTFDescricao.getText());
+        Ferramenta ferramenta = new Ferramenta();
+        ferramenta.setCodigo(Utilidade.gerarUUID(jTFCodigo.getText()));
+        ferramenta.setDescricao(jTFDescricao.getText());
         return ferramenta;
     }
 
     @Override
     protected boolean validarCampos() {
-        if (jTFCodigo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(
-                    this,
-                    "É obrigatório o preenchimento do campo 'Código'",
-                    "Aviso",
-                    JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
+
         if (jTFDescricao.getText().isEmpty()) {
             JOptionPane.showMessageDialog(
                     this,
@@ -178,23 +177,19 @@ public class TelaGestaoFerramenta extends TelaPadrao {
 
     @Override
     protected void setEstadoVisualizacao() {
-        jTFCodigo.setEditable(false);
         jTFDescricao.setEditable(false);
         jLFerramenta.setVisible(false);
     }
 
     @Override
     protected void setEstadoInsercao() {
-        jTFCodigo.setEditable(true);
         jTFDescricao.setEditable(true);
-        jTFCodigo.requestFocusInWindow();
         jLFerramenta.setText("");
         jLFerramenta.setVisible(true);
     }
 
     @Override
     protected void setEstadoEdicao() {
-        jTFCodigo.setEditable(false);
         jTFDescricao.setEditable(true);
         jTFDescricao.requestFocusInWindow();
     }
@@ -214,6 +209,7 @@ public class TelaGestaoFerramenta extends TelaPadrao {
     private javax.swing.JLabel jLFerramenta;
     private javax.swing.JLabel jLNome;
     private javax.swing.JLabel jLTelefone;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPDadosContato;
     private javax.swing.JTextField jTFCodigo;
     private javax.swing.JTextField jTFDescricao;

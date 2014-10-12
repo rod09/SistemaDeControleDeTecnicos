@@ -11,6 +11,7 @@ import SCT.Classe.FerramentaChamado;
 import SCT.Classe.IKey;
 import SCT.DAO.ChamadoDAO;
 import SCT.DAO.FerramentaChamadoDAO;
+import SCT.Utilidade.Utilidade;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,6 +58,7 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
         jLChamado = new javax.swing.JLabel();
         jLFerramenta = new javax.swing.JLabel();
         jLFerramentaChamado = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -72,6 +74,7 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
             }
         });
 
+        jTFCodigo.setEditable(false);
         jTFCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTFCodigoKeyReleased(evt);
@@ -92,6 +95,8 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
 
         jLFerramentaChamado.setText(" ");
 
+        jLabel1.setText("Código gerado automaticamente");
+
         javax.swing.GroupLayout jPDadosContatoLayout = new javax.swing.GroupLayout(jPDadosContato);
         jPDadosContato.setLayout(jPDadosContatoLayout);
         jPDadosContatoLayout.setHorizontalGroup(
@@ -111,12 +116,18 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
                     .addComponent(jTFFerramenta, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)
                     .addComponent(jTFChamado)
                     .addComponent(jTFCodigo))
-                .addGap(18, 18, 18)
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLChamado)
-                    .addComponent(jLFerramenta)
-                    .addComponent(jLFerramentaChamado))
-                .addContainerGap(119, Short.MAX_VALUE))
+                    .addGroup(jPDadosContatoLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLFerramentaChamado))
+                    .addGroup(jPDadosContatoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLFerramenta)
+                            .addComponent(jLChamado))))
+                .addContainerGap(87, Short.MAX_VALUE))
         );
         jPDadosContatoLayout.setVerticalGroup(
             jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,7 +136,8 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNome)
                     .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLFerramentaChamado))
+                    .addComponent(jLFerramentaChamado)
+                    .addComponent(jLabel1))
                 .addGap(21, 21, 21)
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLTelefone)
@@ -206,25 +218,16 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
 
     @Override
     protected IKey montaDado() {
-        FerramentaChamado ferramentaChamado =
-                new FerramentaChamado(
-                        jTFCodigo.getText().trim(),
-                        jTFChamado.getText().trim(),
-                        jTFFerramenta.getText().trim()
-                );
+        FerramentaChamado ferramentaChamado = new FerramentaChamado();
+        ferramentaChamado.setCodigo(Utilidade.gerarUUID(jTFCodigo.getText()));
+        ferramentaChamado.setChamado(jTFChamado.getText().trim());
+        ferramentaChamado.setFerramenta(jTFFerramenta.getText().trim());
         return ferramentaChamado;
     }
 
     @Override
     protected boolean validarCampos() {
-        if (jTFCodigo.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(
-                    this,
-                    "É obrigatório o preenchimento do campo 'Código'",
-                    "Aviso",
-                    JOptionPane.WARNING_MESSAGE);
-            return false;
-        }
+
         if (jTFChamado.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(
                     this,
@@ -278,7 +281,6 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
 
     @Override
     protected void setEstadoVisualizacao() {
-        jTFCodigo.setEditable(false);
         jTFChamado.setEditable(false);
         jTFFerramenta.setEditable(false);
         jLFerramentaChamado.setVisible(false);
@@ -286,10 +288,8 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
 
     @Override
     protected void setEstadoInsercao() {
-        jTFCodigo.setEditable(true);
         jTFChamado.setEditable(true);
         jTFFerramenta.setEditable(true);
-        jTFCodigo.requestFocusInWindow();
         jLChamado.setText("Título do chamado");
         jLFerramenta.setText("Descrição da ferramenta");
         jLFerramentaChamado.setVisible(true);
@@ -298,7 +298,6 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
 
     @Override
     protected void setEstadoEdicao() {
-        jTFCodigo.setEditable(false);
         jTFChamado.setEditable(true);
         jTFFerramenta.setEditable(true);
         jTFChamado.requestFocusInWindow();
@@ -322,6 +321,7 @@ public class TelaGestaoFerramentaChamado extends TelaPadrao {
     private javax.swing.JLabel jLNome;
     private javax.swing.JLabel jLTelefone;
     private javax.swing.JLabel jLTelefone1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPDadosContato;
     private javax.swing.JTextField jTFChamado;
     private javax.swing.JTextField jTFCodigo;

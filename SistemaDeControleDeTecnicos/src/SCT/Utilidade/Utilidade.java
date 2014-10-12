@@ -12,7 +12,7 @@ import java.util.UUID;
  * @author Ródney
  */
 public class Utilidade {
-    public static String getUUID(String texto){
+    public static String gerarUUID(String texto){
     String codigoTecnico;
         if(texto.trim().isEmpty()){
         //Gera código aleatório
