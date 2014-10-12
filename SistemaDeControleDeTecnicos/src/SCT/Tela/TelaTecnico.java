@@ -93,11 +93,11 @@ public class TelaTecnico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMICadastrarFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastrarFerramentaActionPerformed
+    private void jMILancamentoChamadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMILancamentoChamadoActionPerformed
         // TODO add your handling code here:
-        TelaGestaoFerramenta t = new TelaGestaoFerramenta(this,true);
+        TelaGestaoChamado t = new TelaGestaoChamado(this,true);
         t.setVisible(true);
-    }//GEN-LAST:event_jMICadastrarFerramentaActionPerformed
+    }//GEN-LAST:event_jMILancamentoChamadoActionPerformed
 
     private void jMICadastroMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastroMaquinaActionPerformed
         // TODO add your handling code here:
@@ -105,11 +105,11 @@ public class TelaTecnico extends javax.swing.JFrame {
         t.setVisible(true);
     }//GEN-LAST:event_jMICadastroMaquinaActionPerformed
 
-    private void jMILancamentoChamadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMILancamentoChamadoActionPerformed
+    private void jMICadastrarFerramentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICadastrarFerramentaActionPerformed
         // TODO add your handling code here:
-        TelaGestaoChamado t = new TelaGestaoChamado(this,true);
+        TelaGestaoFerramenta t = new TelaGestaoFerramenta(this,true);
         t.setVisible(true);
-    }//GEN-LAST:event_jMILancamentoChamadoActionPerformed
+    }//GEN-LAST:event_jMICadastrarFerramentaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

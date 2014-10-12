@@ -42,7 +42,6 @@ public class TelaCoordenador extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMIConsultaChamadosRecentesDeCadaTecnico = new javax.swing.JMenuItem();
         jMAjuda = new javax.swing.JMenu();
-        jMISobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Controle de técnicos");
@@ -114,15 +113,6 @@ public class TelaCoordenador extends javax.swing.JFrame {
         jMBPrincipal.add(jMenu2);
 
         jMAjuda.setText("Ajuda");
-
-        jMISobre.setText("Sobre");
-        jMISobre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMISobreActionPerformed(evt);
-            }
-        });
-        jMAjuda.add(jMISobre);
-
         jMBPrincipal.add(jMAjuda);
 
         setJMenuBar(jMBPrincipal);
@@ -191,12 +181,6 @@ public class TelaCoordenador extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMIConsultaChamadosRecentesDeCadaTecnicoActionPerformed
 
-    private void jMISobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMISobreActionPerformed
-        // TODO add your handling code here:
-        UUID userId = UUID.randomUUID();
-        System.out.println(String.valueOf(userId).substring(0, 7));
-    }//GEN-LAST:event_jMISobreActionPerformed
-
     private void finaliza() {
         ConnectionManager.desconecta();
         System.exit(0);
@@ -211,7 +195,6 @@ public class TelaCoordenador extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMICadastrarChamado;
     private javax.swing.JMenuItem jMICadastrarFerramentaChamado;
     private javax.swing.JMenuItem jMIConsultaChamadosRecentesDeCadaTecnico;
-    private javax.swing.JMenuItem jMISobre;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     // End of variables declaration//GEN-END:variables

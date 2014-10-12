@@ -49,7 +49,6 @@ public class TelaGestaoFerramenta extends TelaPadrao {
         jLTelefone = new javax.swing.JLabel();
         jTFDescricao = new javax.swing.JTextField();
         jTFCodigo = new javax.swing.JTextField();
-        jLFerramenta = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -60,13 +59,7 @@ public class TelaGestaoFerramenta extends TelaPadrao {
 
         jLTelefone.setText("Descricao");
 
-        jTFCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTFCodigoKeyReleased(evt);
-            }
-        });
-
-        jLFerramenta.setText(" ");
+        jTFCodigo.setEditable(false);
 
         jLabel1.setText("Código gerado automaticamente");
 
@@ -87,9 +80,7 @@ public class TelaGestaoFerramenta extends TelaPadrao {
                     .addGroup(jPDadosContatoLayout.createSequentialGroup()
                         .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLFerramenta))))
+                        .addComponent(jLabel1))))
         );
         jPDadosContatoLayout.setVerticalGroup(
             jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +89,6 @@ public class TelaGestaoFerramenta extends TelaPadrao {
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLNome)
                     .addComponent(jTFCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLFerramenta)
                     .addComponent(jLabel1))
                 .addGap(21, 21, 21)
                 .addGroup(jPDadosContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -126,18 +116,6 @@ public class TelaGestaoFerramenta extends TelaPadrao {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTFCodigoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFCodigoKeyReleased
-        try {
-            // TODO add your handling code here:
-            Ferramenta ferramenta = (Ferramenta) dadosDAO.consulta(jTFCodigo.getText());
-            jLFerramenta.setText(
-                    ferramenta != null ? "Código já cadastrado" : "Código não cadastrado"
-            );
-        } catch (SQLException ex) {
-            Logger.getLogger(TelaGestaoFerramenta.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jTFCodigoKeyReleased
 
     private void setComponentes() {
         setTitle("Gestão de Ferramentas");
@@ -178,14 +156,11 @@ public class TelaGestaoFerramenta extends TelaPadrao {
     @Override
     protected void setEstadoVisualizacao() {
         jTFDescricao.setEditable(false);
-        jLFerramenta.setVisible(false);
     }
 
     @Override
     protected void setEstadoInsercao() {
         jTFDescricao.setEditable(true);
-        jLFerramenta.setText("");
-        jLFerramenta.setVisible(true);
     }
 
     @Override
@@ -206,7 +181,6 @@ public class TelaGestaoFerramenta extends TelaPadrao {
         listagem.setVisible(true);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLFerramenta;
     private javax.swing.JLabel jLNome;
     private javax.swing.JLabel jLTelefone;
     private javax.swing.JLabel jLabel1;
