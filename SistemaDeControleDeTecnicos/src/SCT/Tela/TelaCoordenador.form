@@ -4,60 +4,6 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMBPrincipal">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMCadastro">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Cadastrar"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMICadastraTecnico">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Tecnico"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMICadastraTecnicoActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMICadastraMaquina">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Maquina"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMICadastraMaquinaActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMICadastraFerramenta">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ferramenta"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMICadastraFerramentaActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Lan&#xe7;amento"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMICadastrarChamado">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Chamado"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMICadastrarChamadoActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMICadastrarFerramentaChamado">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ferramenta e chamado"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMICadastrarFerramentaChamadoActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Consulta"/>
@@ -72,6 +18,11 @@
               </Events>
             </MenuItem>
           </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Gerar Relat&#xf3;rio"/>
+          </Properties>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMAjuda">
           <Properties>
@@ -109,13 +60,146 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="559" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="44" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="316" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="3" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Cadastrar">
+              <Font PropertyName="font" name="Times New Roman" size="14" style="1"/>
+              <Color PropertyName="color" blue="0" green="0" red="cc" type="rgb"/>
+            </TitledBorder>
+          </Border>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jBCadastrarTecnicos" alignment="0" min="-2" pref="229" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jBCadasatrarFerramenta" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jBCadastrarChamado" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jBCadastrarFerramentasChamado" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jBCadastrarMaquina" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jBSair" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jBCadastrarTecnicos" alignment="3" min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="jBCadastrarFerramentasChamado" alignment="3" min="-2" pref="72" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jBCadasatrarFerramenta" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="jBCadastrarMaquina" alignment="3" min="-2" pref="71" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="7" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jBCadastrarChamado" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                      <Component id="jBSair" alignment="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JButton" name="jBCadasatrarFerramenta">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icones/Ferramenta.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value=" Ferramentas"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCadasatrarFerramentaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBCadastrarMaquina">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icones/Maquina.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="M&#xe1;quinas"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCadastrarMaquinaActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBCadastrarChamado">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icones/Chamado.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Chamados"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCadastrarChamadoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBCadastrarTecnicos">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icones/Tecnico.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="T&#xe9;cnicos"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCadastrarTecnicosActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBCadastrarFerramentasChamado">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icones/FerramentaChamado.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Ferramentas Chamado"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBCadastrarFerramentasChamadoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jBSair">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/icones/Sair.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Fechar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBSairActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
 </Form>
