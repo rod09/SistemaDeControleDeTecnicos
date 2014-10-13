@@ -18,7 +18,8 @@ public class Utilidade {
         //Gera código aleatório
         UUID codigoTecnicoUUID = UUID.randomUUID();
         //Diminui tamanho do código para 7 caracteres
-        codigoTecnico = String.valueOf(codigoTecnicoUUID).substring(0, 7);
+        //codigoTecnico = String.valueOf(codigoTecnicoUUID).substring(0, 7);
+        codigoTecnico = codigoTecnicoUUID.toString();
         }else{
         codigoTecnico = texto.trim();
         }
