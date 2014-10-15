@@ -32,7 +32,8 @@ public abstract class PadraoDAO {
         }
     }
 
-    public ArrayList<EstruturaTabela> getEstrutura(String tabela) throws SQLException {
+    public ArrayList<EstruturaTabela> getEstrutura(String tabela) 
+            throws SQLException{
         ArrayList<EstruturaTabela> estruturaTabela = new ArrayList<>();
         DatabaseMetaData dbmd = connection.getMetaData();
         ResultSet resultSet = dbmd.getColumns(null, null, tabela, "%");
@@ -48,7 +49,8 @@ public abstract class PadraoDAO {
         return estruturaTabela;
     }
     
-    public String getUsuario()  throws SQLException{
+    public String getUsuario()
+            throws SQLException{
         String sql = "SELECT USER() AS usuario";
         String usuario = null;
         PreparedStatement pst = connection.prepareStatement(sql);
