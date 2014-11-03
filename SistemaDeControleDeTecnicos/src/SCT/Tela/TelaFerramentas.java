@@ -16,6 +16,9 @@ public class TelaFerramentas extends javax.swing.JDialog {
 
     /**
      * Creates new form TelaFerramentas
+     * @param parent
+     * @param modal
+     * @param ferramentas
      */
     public TelaFerramentas(
             java.awt.Frame parent,
