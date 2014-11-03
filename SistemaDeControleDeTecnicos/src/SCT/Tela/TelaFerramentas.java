@@ -6,8 +6,6 @@
 package SCT.Tela;
 
 import java.util.ArrayList;
-import java.util.Vector;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
